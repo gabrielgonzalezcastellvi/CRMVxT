@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Redirigir la URL base sin mostrar index.php
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+(index\.php)?\s [NC]
+RewriteRule ^(index\.php)?$ / [R=301,L]
+
+# Redirigir las URLs sin extensión .php a sus correspondientes archivos .php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)$ $1.php [L,QSA]
